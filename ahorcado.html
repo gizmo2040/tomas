@@ -1,0 +1,90 @@
+<html>
+<head>
+
+<style>
+
+#teclado{
+
+border: 1px solid blue;
+
+}
+#palabra{
+
+border: 1px solid green;
+
+}
+
+.tecla{
+display: inline-block;
+border: 1px solid red;
+
+}
+
+.letras{
+display: inline-block;
+border: 2px solid black;
+
+}
+
+</style>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+
+var arrayABC = new Array ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+var palabra = "Junta";
+
+$(document).ready (init);
+function init (e){
+
+
+
+	for(var i=0,max=arrayABC.length;i<max;i++){
+
+    	$('<div/>', {
+    	'id': 'tecla-' + arrayABC [i],
+    	'class': 'tecla'
+    	}).html(arrayABC [i]).appendTo('#teclado');
+	}
+
+	$(".tecla").click(teclapresed);
+
+
+	for(var i=0,max=palabra.length;i<max;i++){
+
+    	$('<div/>', {
+    	'letra': 'letra_' + palabra [i],
+    	'class': 'letras'
+    	}).html("_").appendTo('#palabra');
+	}
+
+	$(".tecla").click(teclapresed);
+	
+
+
+
+}
+
+function teclapresed (e){
+
+alert( $(e.currentTarget).attr('id') );
+
+}
+
+
+</script>
+ <div id="teclado">
+ </div>
+
+<div id="palabra">
+</div>
+</body>
+
+</html>
