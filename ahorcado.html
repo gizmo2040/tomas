@@ -26,6 +26,12 @@ border: 2px solid black;
 
 }
 
+.seleccionado{
+
+border: 2px solid green;
+}
+
+
 </style>
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 
@@ -38,8 +44,24 @@ border: 2px solid black;
 <script type="text/javascript">
 
 
+
+
 var arrayABC = new Array ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
-var palabra = "Junta";
+
+var palabras = [];
+
+palabras [0]='Junta';
+palabras [1]='Bonafont';
+palabras [2]='Seven';
+palabras [3]='Ahorcado';
+palabras [4]='Ergoux';
+palabras [5]='Jackson';
+
+var randomnumber=Math.floor(Math.random()*6);
+var palabra = palabras[randomnumber];
+console.log(palabra);
+
+
 
 $(document).ready (init);
 function init (e){
@@ -61,12 +83,11 @@ function init (e){
 
     	$('<div/>', {
     	'letra': 'letra_' + palabra [i],
-    	'class': 'letras'
+    	'class': 'letras letra_' + palabra [i],
     	}).html("_").appendTo('#palabra');
 	}
 
-	$(".tecla").click(teclapresed);
-	
+
 
 
 
@@ -74,10 +95,16 @@ function init (e){
 
 function teclapresed (e){
 
-alert( $(e.currentTarget).attr('id') );
+
+	var letra = e.currentTarget.id.split("-")[1];
+	if($(".letra_" + letra).length > 0){
+		$(".letra_" + letra).html(letra);
+		$('.letra_').addClass("seleccionado");
+	} else {
+		alert("La letra no esta");
+	}			
 
 }
-
 
 </script>
  <div id="teclado">
