@@ -7,6 +7,7 @@
 
 border: 1px solid blue;
 
+
 }
 #palabra{
 
@@ -17,6 +18,7 @@ border: 1px solid green;
 .tecla{
 display: inline-block;
 border: 1px solid red;
+
 
 }
 
@@ -31,6 +33,12 @@ border: 2px solid black;
 border: 2px solid green;
 }
 
+#hangman{
+height: 220px;
+width: 300px;
+background-color:yellow;
+
+}
 
 </style>
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -44,8 +52,8 @@ border: 2px solid green;
 <script type="text/javascript">
 
 
-
-
+var aciertos = 0;
+var numFallos = 0;
 var arrayABC = new Array ("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 
 var palabras = [];
@@ -77,6 +85,7 @@ function init (e){
 	}
 
 	$(".tecla").click(teclapresed);
+	$(".tecla").click(lost);
 
 
 	for(var i=0,max=palabra.length;i<max;i++){
@@ -100,17 +109,52 @@ function teclapresed (e){
 	if($(".letra_" + letra).length > 0){
 		$(".letra_" + letra).html(letra);
 		$('.letra_').addClass("seleccionado");
+		aciertos = ( aciertos +1);
+		alert('Tu muy bien');
 	} else {
+	
+	   numFallos = (numFallos +1 );
+	   
+		
 		alert("La letra no esta");
 	}			
 
 }
+
+function lost (e){
+
+if(numFallos == 6) {
+
+
+alert('no la armaste');
+
+}
+
+
+}
+
+function won (e){
+
+if(aciertos == 6) {
+
+
+alert('ganaste tigre');
+
+}
+
+
+}
+
 
 </script>
  <div id="teclado">
  </div>
 
 <div id="palabra">
+</div>
+
+<div id="hangman">
+
 </div>
 </body>
 
