@@ -17,6 +17,46 @@ border-color:brown;
 
 }
 
+.tecla{
+display: inline-block;
+border: 1px solid brown;
+padding-right: 2px;
+padding-left: 2px;
+font-size: larger;
+background-color: beige;
+height: 25px;
+width: 25px;
+text-align: center;
+
+
+}
+
+.teclawrong{
+display: inline-block;
+border: 1px solid red
+padding-right: 2px;
+padding-left: 2px;
+font-size: larger;
+background-color: red;
+height: 25px;
+width: 25px;
+text-align: center;
+
+}
+
+.teclayes{
+display: inline-block;
+border: 1px solid blue;
+padding-right: 2px;
+padding-left: 2px;
+font-size: larger;
+background-color: blue;
+height: 25px;
+width: 25px;
+text-align: center;
+
+}
+
 #teclado{
 
 border: 2px solid grey;
@@ -35,19 +75,6 @@ top: 300px;
 
 }
 
-.tecla{
-display: inline-block;
-border: 1px solid brown;
-padding-right: 2px;
-padding-left: 2px;
-font-size: larger;
-background-color: beige;
-height: 25px;
-width: 25px;
-text-align: center;
-
-
-}
 
 .letras{
 display: inline-block;
@@ -64,12 +91,15 @@ border: 2px solid green;
 
 #hangman{
 
-background-image:url('monoPortada.png');
+background-image:url('ahorcado-xport.png');
 height: 220px;
 width: 300px;
 
 
+
 }
+
+
 
 </style>
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -136,9 +166,12 @@ function init (e){
 
 function teclapresed (e){
 
-
 	var letra = e.currentTarget.id.split("-")[1];
 	if($(".letra_" + letra).length > 0){
+   
+    $(this).addClass('teclayes');
+       $(this).unbind(['click'][teclapresed]);
+    
 		$(".letra_" + letra).html(letra);
 		
 		aciertos = ( aciertos +1);
@@ -147,6 +180,9 @@ function teclapresed (e){
 		alert('Tu muy bien');
 	} else {
 	
+    $(this).addClass('teclawrong');
+    $(this).unbind(['click'][teclapresed]);
+   
 	   numFallos = (numFallos +1 );
 	   
 		
@@ -155,7 +191,8 @@ function teclapresed (e){
 }
 
 function lost (e){
-/*
+/*  "top:" + num * 300 + "px"
+
 ............................................________
 ....................................,.-‘”...................``~.,
 .............................,.-”...................................“-.,
@@ -182,17 +219,16 @@ function lost (e){
 ...................................,<`.._|_,-&``................`\
 */
      if (numFallos == 1){
-      
-      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1800px 0px");   
+           	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat  0px 0px");   
 		
 
       
       } else if (numFallos == 2){
-      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1500px 0px");   
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -300px 0px");   
 		
 
       } else if (numFallos == 3){
-      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1200px 0px");   
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -600px 0px");   
 		
 
       } else if (numFallos == 4){
@@ -200,15 +236,15 @@ function lost (e){
 		
 
       } else if (numFallos == 5){
-      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -600px 0px");   
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1200px 0px");   
 		
 
       } else if (numFallos == 6){
-      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -300px 0px");   
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1500px 0px");   
 		
 
       } else if (numFallos == 7){
-      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat 0px 0px");   
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat  -1800px 0px");   
 		
       }else if(numFallos == 8 ) {
 
