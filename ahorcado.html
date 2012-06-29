@@ -1,30 +1,59 @@
 <html>
 <head>
 
-<style>
+<style type="text/css">
+
+#pizarron
+{
+height: 220px;
+width: 300px;
+position: absolute;
+left: 400px;
+top: 50px;
+background-color:green;
+border: 5px solid;
+border-color:brown;
+
+
+}
 
 #teclado{
 
-border: 1px solid blue;
+border: 2px solid grey;
+position: absolute;
+left:150px ;
+top: 350px ;
+
 
 
 }
 #palabra{
 
-border: 1px solid green;
+position: absolute;
+left: 450px;
+top: 300px;
 
 }
 
 .tecla{
 display: inline-block;
-border: 1px solid red;
+border: 1px solid brown;
+padding-right: 2px;
+padding-left: 2px;
+font-size: larger;
+background-color: beige;
+height: 25px;
+width: 25px;
+text-align: center;
 
 
 }
 
 .letras{
 display: inline-block;
-border: 2px solid black;
+padding-right: 4px;
+padding-left: 4px;
+font-size: xx-large;
 
 }
 
@@ -34,9 +63,11 @@ border: 2px solid green;
 }
 
 #hangman{
+
+background-image:url('monoPortada.png');
 height: 220px;
 width: 300px;
-background-color:yellow;
+
 
 }
 
@@ -86,6 +117,7 @@ function init (e){
 
 	$(".tecla").click(teclapresed);
 	$(".tecla").click(lost);
+	$(".tecla").click(won);
 
 
 	for(var i=0,max=palabra.length;i<max;i++){
@@ -108,40 +140,65 @@ function teclapresed (e){
 	var letra = e.currentTarget.id.split("-")[1];
 	if($(".letra_" + letra).length > 0){
 		$(".letra_" + letra).html(letra);
-		$('.letra_').addClass("seleccionado");
+		
 		aciertos = ( aciertos +1);
+		 // este trip es para la funcion de ganar, pero aun no le doy 
+		 
 		alert('Tu muy bien');
 	} else {
 	
 	   numFallos = (numFallos +1 );
 	   
 		
-		alert("La letra no esta");
 	}			
 
 }
 
 function lost (e){
 
-if(numFallos == 6) {
+     if (numFallos == 1){
+      
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1800px 0px");   
+		
 
+      
+      } else if (numFallos == 2){
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1500px 0px");   
+		
 
-alert('no la armaste');
+      } else if (numFallos == 3){
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -1200px 0px");   
+		
+
+      } else if (numFallos == 4){
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -900px 0px");   
+		
+
+      } else if (numFallos == 5){
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -600px 0px");   
+		
+
+      } else if (numFallos == 6){
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat -300px 0px");   
+		
+
+      } else if (numFallos == 7){
+      	$('#hangman').css("background", "url('ahorcado-xport.png') no-repeat 0px 0px");   
+		
+      }else if(numFallos == 8 ) {
+
+             alert('no la armaste');
 
 }
 
 
-}
-
-function won (e){
-
-if(aciertos == 6) {
-
-
-alert('ganaste tigre');
 
 }
 
+function won(e){
+    	if (aciertos == palabra.length){
+	alert('Ganaste tigre');	
+}
 
 }
 
@@ -153,7 +210,11 @@ alert('ganaste tigre');
 <div id="palabra">
 </div>
 
+
+<div id="pizarron">
 <div id="hangman">
+
+</div>
 
 </div>
 </body>
